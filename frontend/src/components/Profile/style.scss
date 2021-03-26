@@ -1,0 +1,24 @@
+.content-box {    
+    .modal.show {
+        display: block;
+    }
+}
+
+.btn-dark {
+    background-color: #252A41;
+}
+
+.modal-footer {
+    border: none !important;
+}
+
+.photo-upload {
+    width: 100%;
+    height: 200px;        
+    border-radius: 10px;
+    border: 1px dotted #4ED4FA;
+    background-color: rgb(232, 250, 255);
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
+}

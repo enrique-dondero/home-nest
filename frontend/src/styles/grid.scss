@@ -1,0 +1,19 @@
+.grid-container {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    align-items: start;
+}
+
+
+@include media-breakpoint-up(md) {
+    .grid-container {
+        grid-template-columns: 1fr 320px;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    .grid-container {
+        grid-template-columns: 1fr 320px 320px;
+    }
+}

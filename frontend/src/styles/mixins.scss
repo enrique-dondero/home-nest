@@ -1,0 +1,6 @@
+@mixin border-radius-grid-up($radius, $name) {
+    @include media-breakpoint-up($name) {
+        border-radius: $radius;
+    }
+}
+

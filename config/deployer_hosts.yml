@@ -1,0 +1,7 @@
+dev:
+    hostname: chirping.dev.4xxi.com
+    stage: dev
+    roles: app
+    user: deploy
+    http_user: nginx
+    deploy_path: /var/www/{{hostname}}

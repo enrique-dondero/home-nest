@@ -1,0 +1,166 @@
+version: '3'
+services:
+  php:
+    container_name: app
+    volumes:
+      - .:/var/www/app
+      - ./aws-credentials:/root/.aws/credentials
+    working_dir: /var/www/app
+    build:
+      context: ./build-deploy/php
+    depends_on:
+      - mysql
+      - elasticsearch
+      - logstash
+      - localstack
+    links:
+      - mysql
+      - elasticsearch
+      - logstash
+      - localstack
+    expose:
+      - "9000"
+    entrypoint: ./build-deploy/php/docker-entrypoint.sh
+    environment:
+      - COMPOSER_HOME=/var/www/app/var/composer
+      - APP_ENV
+    networks:
+      app:
+  nginx:
+    image: 4xxi/nginx:flex
+    depends_on:
+      - php
+      - react
+      - kibana
+    ports:
+      - 80:80
+      - 443:443
+      - 5601:5601
+    command: /var/www/app/build-deploy/nginx/docker-entrypoint.sh
+    volumes:
+      - .:/var/www/app
+      - ./storage/logs:/var/log/nginx
+      - ./build-deploy/nginx/ssl:/etc/nginx/ssl
+      - ./build-deploy/nginx/htpasswd:/etc/nginx/htpasswd
+      - ./build-deploy/nginx/domains.d/kibana.app.local.conf:/etc/nginx/sites-available/kibana.app.local.conf
+      - ./build-deploy/nginx/domains.d/laravel-sample.conf:/etc/nginx/sites-available/laravel.conf
+    environment:
+      - APP_ENV
+    tty: true
+    networks:
+      app:
+        aliases:
+          - api.app.local
+  react:
+    image: node:10
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/www/app
+    command: /var/www/app/build-deploy/react/docker-entrypoint.sh
+    environment:
+      - APP_ENV
+    networks:
+      app:
+        aliases:
+          - nodejs.app.local
+  mysql:
+    image: percona:5.7
+    environment:
+      - MYSQL_DATABASE=app
+      - MYSQL_HOST=127.0.0.1
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - ./database/mainDB.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./database/testDB.sql:/docker-entrypoint-initdb.d/test.sql
+    expose:
+      - 3306
+    networks:
+      app:
+        aliases:
+          - 127.0.0.1
+          - mysql.app.local
+    ports:
+      - 127.0.0.1:3306:3306
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 127.0.0.1:9200:9200
+    networks:
+      app:
+        aliases:
+          - elasticsearch.app.local
+    volumes:
+      - ./storage/synonym.txt:/usr/share/elasticsearch/config/analysis/synonym.txt
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.4.2
+    container_name: logstash
+    environment:
+      - LOGSTASH_JDBC_URL=jdbc:mysql://mysql.app.local:3306/app
+      - LOGSTASH_JDBC_DRIVER=com.mysql.jdbc.Driver
+      - LOGSTASH_JDBC_DRIVER_JAR_LOCATION=/configuration/logstash/mysql-connector-java-5.1.47.jar
+      - LOGSTASH_JDBC_USERNAME=root
+      - LOGSTASH_JDBC_PASSWORD=
+      - ELASTIC_HOST=127.0.0.1:9200
+      - DB_PORT
+      - DB_HOST
+    ports:
+      - 127.0.0.1:9600:9600
+      - 127.0.0.1:5044:5044
+    networks:
+      app:
+        aliases:
+        - logstash.app.local
+    volumes:
+      - ./build-deploy/logstash:/configuration/logstash
+      - .:/var/www/app
+    links:
+      - elasticsearch
+      - mysql
+    depends_on:
+      - elasticsearch
+      - mysql
+    command: /var/www/app/build-deploy/logstash/start.sh
+  localstack:
+    image: localstack/localstack:0.9.5
+    environment:
+      - SERVICES=s3:4572,sqs:4576,ses:4579
+      - DEFAULT_REGION=us-east-1
+      - HOSTNAME_EXTERNAL=localstack.app.local
+    networks:
+      app:
+        aliases:
+          - localstack.app.local
+          - images.localstack.app.local
+    ports:
+      - 127.0.0.1:4572:4572
+      - 127.0.0.1:4576:4576
+      - 127.0.0.1:4579:4579
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.2
+    environment:
+      SERVER_NAME: kibana.app.local
+      ELASTICSEARCH_URL: http://elasticsearch.app.local:9200
+    depends_on:
+      - elasticsearch
+      - logstash
+    networks:
+      app:
+        aliases:
+          - kibana.app.local
+networks:
+  app:

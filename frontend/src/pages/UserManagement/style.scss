@@ -1,0 +1,51 @@
+
+
+
+.icon-btn {
+    cursor: pointer;
+}
+
+.font-title {
+    font-family: 'Muli';
+    font-weight: 500;
+    font-size: 42px;
+    letter-spacing: 3;
+    line-height: 1.14;
+}
+
+.font-body-m {
+    font-family: 'Muli';
+    font-size: 17px;
+    letter-spacing: 1.4;
+    line-height: 1.55;
+}
+
+.font-body-l {
+    font-family: 'Muli';
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1.4;
+    line-height: 1.55;
+}
+
+
+.font-caption-m {
+    font-family: 'Muli';
+    font-size: 14px;
+    letter-spacing: 1.2;
+    line-height: 1.5;
+}
+
+.font-caption-l {
+    font-family: 'Muli';
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1.2;
+    line-height: 1.5;
+}
+
+.btn-right-icon {
+    .icon {
+        margin-left: 10px;
+    }
+}

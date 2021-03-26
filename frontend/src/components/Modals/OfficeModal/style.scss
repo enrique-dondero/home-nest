@@ -1,0 +1,46 @@
+.office-modal {
+    #react-time-range {
+        #select-start,
+        #select-end {
+            border: none;
+            background-color: #F1F1FC;
+            padding: 10px;
+        }
+    }
+    .btn-add {
+        border-radius: 3px;
+        color: #b1b1bf;
+        padding: 3px 5px;
+        height: fit-content;
+        border: 2px solid #b1b1bf;
+        margin-left: 10px;
+    }
+    .day-hour {
+        border-bottom: 1px dotted #b1b1bf;
+        padding: 5px 0px !important;        
+    }
+}
+
+.react-datepicker-wrapper {
+    width: 100px;
+    margin: 5px 5px;
+
+    .react-datepicker__input-container {
+        width: 100%;
+        input {
+            width: 100%;
+            padding: 10px;
+        }
+    }
+}
+
+.react-datepicker-popper {
+    .react-datepicker {
+        .react-datepicker__time-container {
+            width: 100px;
+            .react-datepicker__time-box {
+                width: 100%;
+            }
+        }
+    }
+}

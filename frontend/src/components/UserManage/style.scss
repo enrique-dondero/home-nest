@@ -1,0 +1,188 @@
+.user-management {
+    .user-section {
+        margin: 15px 0px;
+        .section-label {
+            margin: 20px 0px;
+        }
+        .show-all {
+            padding: 15px 0px;
+        }
+    }
+}
+
+.public-user {
+    .title-bar {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+}
+
+.user-table {
+    background: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);    
+    border-radius: 10px;
+    .header {
+        background: #F1F1FC;
+        padding: 10px 20px;
+        .btn-sort {
+            margin-left: 10px;
+        }
+        .header-column {
+            color: #b1b1bf;
+        }
+    }
+    .user-row {
+        display: flex;
+        .header-status {
+            flex-basis: 2%;
+        }
+        .header-id {
+            flex-basis: 20%;
+        }
+        .header-name {
+            flex-basis: 32%;
+        }
+        .header-email {
+            flex-basis: 32%;
+        }
+        .header-action {
+            flex-basis: 15%;
+            display: flex;
+            justify-content: space-around;
+            color: #b1b1bf;
+            .eye-slash {
+                color: red;
+            }
+        }
+    }
+    .body {        
+        .user-row {
+            padding: 20px 0px;
+            margin: 0px 20px;
+            border-bottom: 1px dotted #B1B1BF;
+            .body-col {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .header-status {
+                &:after {
+                    content: "";
+                    display: block;
+                    margin-top: 8px;
+                    height: 8px;
+                    width: 8px;
+                    background-color: red;
+                    border-radius: 50%;   
+                }
+                &.active {
+                    &:after {
+                        background-color: #00f5ca;
+                    }
+                }
+            }
+        }
+        div:last-child {
+            border-bottom: none;
+        }
+    }
+    .table-top {
+        padding: 20px;
+    }
+}
+
+
+.public-user-table {
+    background: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);    
+    border-radius: 10px;
+    .header {
+        background: #F1F1FC;
+        padding: 10px 20px;
+        .btn-sort {
+            margin-left: 10px;
+        }
+        .header-column {
+            color: #b1b1bf;
+        }
+    }
+    .user-row {
+        display: flex;
+        .header-check {
+            margin-right: 10px;
+        }
+        .header-status {
+            flex-basis: 2%;
+        }
+        .header-id {
+            flex-basis: 20%;
+        }
+        .header-name {
+            flex-basis: 32%;
+        }
+        .header-email {
+            flex-basis: 32%;
+        }
+        .header-action {
+            flex-basis: 15%;
+            display: flex;
+            justify-content: space-around;
+            color: #b1b1bf;
+            .eye-slash {
+                color: red;
+            }
+        }
+    }
+    .body {        
+        .user-row {
+            padding: 20px 0px;
+            margin: 0px 20px;
+            border-bottom: 1px dotted #B1B1BF;
+            .body-col {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .header-status {
+                &:after {
+                    content: "";
+                    display: block;
+                    margin-top: 8px;
+                    height: 8px;
+                    width: 8px;
+                    background-color: red;
+                    border-radius: 50%;   
+                }
+                &.active {
+                    &:after {
+                        background-color: #00f5ca;
+                    }
+                }
+            }
+        }
+    }
+    .table-top {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        color: #b1b1bf;
+        .filter{
+            display: flex;
+            justify-content: space-around;
+            .not-verified {
+                margin-right: 30px;
+                
+            }
+            .more-filter {
+                border-bottom: 1px dashed #b1b1bf;
+            }
+        }
+    }
+    .pagination-wrapper {
+        padding: 40px 20px;
+    }
+    .no-bot {
+        margin-bottom: 0px !important;
+    }
+}

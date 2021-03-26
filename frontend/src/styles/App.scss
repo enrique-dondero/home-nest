@@ -1,0 +1,710 @@
+// Override default variables before the import
+$body-bg: #f1f1Fc;
+$body-color: #252B3C;
+$primary: #4ed4fa;
+$btn-border-radius: 20px;
+$input-btn-padding-x: 2rem;
+
+/* import what we need to override */
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+
+//$grid-breakpoints: (
+//    xs: 0,
+//    sm: 576px,
+//    md: 768px,
+//    lg: 992px,
+//    xl: 1200px
+//) !default;
+
+/* set the overriding variables */
+$grid-breakpoints: (
+    xxxs: 0,
+    xxs: 320px,
+    xs: 568px,
+    sm: 667px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1440px,
+    xxxl: 1600px
+);
+$container-max-widths: (
+    xxxs: 0,
+    xxs: 320px,
+    xs: 568px,
+    sm: 667px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1440px,
+    xxxl: 1600px
+);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+@import './grid';
+@import './mixins';
+
+body, button {
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 1.2px;
+}
+
+.root
+{
+    padding: 0;
+
+    @include media-breakpoint-up(md) {
+        padding: 0 30px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}
+
+.navbar {
+    padding: 15px 30px;
+    @include media-breakpoint-up(sm) {
+        padding: 0;
+    }
+}
+
+.topnav
+{
+    padding: 15px 30px;
+    @include media-breakpoint-up(md) {
+        padding: 0 0 30px 0;
+    }
+}
+
+.navbar-toggler {
+    border-radius: 0;
+    //background: black;
+    //color: white;
+}
+
+
+.btn-upload {
+    margin-top: 30px;
+}
+
+.btn-primary {
+    color: #fff;
+}
+
+.btn .list-icon {
+    margin-left: 10px;
+}
+
+.btn-flat
+{
+    border: none;
+    background: none;
+}
+
+.btn-back
+{
+    min-height: 45px;
+}
+
+.btn-back .list-icon
+{
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.mobile-nav {
+    cursor: pointer;
+    font-size: large;
+    line-height: 40px;
+    .list-icon {
+        vertical-align: middle;
+        font-size: 24px;
+    }
+}
+
+.actions-dropdown
+{
+    @include media-breakpoint-down(sm) {
+        text-align: left;
+        width: 100%;
+
+        position: relative;
+        .list-icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+        }
+    }
+}
+
+.sidenav {
+    width: 240px;
+    padding: 0 30px;
+
+    .ul-primary
+    {
+        padding: 0;
+        margin: 0 0 0 -45px;
+        list-style: none;
+        text-transform: uppercase;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+
+        li
+        {
+            margin-bottom: 20px;
+            padding: 20px 15px 20px 30px;
+        }
+
+        li a {
+            color: #B1B1BF;
+        }
+
+        li.active
+        {
+            background: #252A41;
+            color: #ffffff;
+            border-radius: 0 10px 10px 0;
+        }
+
+        li.active a {
+            color: #ffffff;
+        }
+
+        .list-icon {
+            font-size: 20px;
+            margin-right: 15px;
+            vertical-align: bottom;
+        }
+    }
+
+    .ul-secondary
+    {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 30px -45px;
+        font-size: smaller;
+
+        li {
+            margin-bottom: 20px;
+            span {
+                padding-left: 65px;
+            }
+            position: relative;
+        }
+
+        li a {
+            color: #B1B1BF;
+            font-weight: bold;
+        }
+
+        li.active a {
+            color: #252a41;
+
+            span {
+                &::before {
+                    position: absolute;
+                    display: inline-block;
+                    height: 2px;
+                    width: 50px;
+                    content: " ";
+                    border-top: 2px solid #252a41;
+                    left: 0;
+                    top: 50%;
+                    margin-top: -1px;
+                    margin-right: 15px;
+                }
+
+                &::after {
+                    position: absolute;
+                    display: inline-block;
+                    height: 2px;
+                    width: 15px;
+                    content: " ";
+                    border-top: 2px solid #252a41;
+                    right: 0;
+                    top: 50%;
+                }
+            }
+        }
+    }
+}
+
+.logo-col {
+    width: 240px;
+}
+
+.sidebar {
+    width: 320px;
+    padding-left: 0;
+    //padding-right: 15px;
+
+    @include media-breakpoint-up(xxl) {
+        width: 640px;
+    }
+}
+
+.status-box
+{
+    @include border-radius-grid-up(10px, 'md');
+    background: #4ed4fa;
+    color: #fff;
+    padding: 15px 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    display: inline-block;
+    margin-right: 60px;
+    color: #BCBBC2;
+}
+
+.search-bar input {
+    color: #BCBBC2;
+    background: none;
+    border: none;
+    width: 5em;
+}
+
+.search-bar .list-icon {
+    margin-right: 15px;
+    font-size: 20px;
+    vertical-align: text-bottom;
+}
+
+.current-user {
+    display: inline-block;
+}
+
+.current-user .avatar
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.current-user .name {
+    margin-left: 30px;
+}
+
+.current-user .list-icon {
+    margin-left: 20px;
+}
+
+.actions-group
+{
+    flex: 1;
+    font-weight: bold;
+}
+
+.actions-group .list-icon
+{
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.status-group
+{
+    .published-status {
+        margin-right: 60px;
+        display: inline-block;
+        font-size: 0.9em;
+
+        .list-icon {
+            margin-right: 10px;
+            vertical-align: bottom;
+            font-size: 20px;
+        }
+    }
+
+    .created-at
+    {
+        display: inline-block;
+        font-size: 0.9em;
+    }
+
+
+    @include media-breakpoint-down(sm) {
+        display: flex;
+        color: #fff;
+        background: #252A41;
+        padding: 15px 30px;
+
+        .published-status {
+            flex: 1;
+        }
+        .published-status, .created-at {
+            font-size: 1em;
+        }
+
+        .published-status .list-icon {
+            vertical-align: sub;
+        }
+    }
+}
+
+.content-box {
+    @include border-radius-grid-up(10px, 'md');
+    padding: 30px 30px;
+    background: white;
+    margin: 15px 0;
+}
+
+.attributes-content dl {
+    position: relative;
+}
+
+.attributes-content .delete-button {
+    border: none;
+    padding: 0;
+    background: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(50%);
+    color: #B1B1BF;
+}
+
+.photo-box {
+    @include border-radius-grid-up(10px, 'md');
+    position: relative;
+    margin: 15px 0;
+    overflow: hidden;
+    max-height: 500px;
+
+    .profile-photo {
+        width: 100%;
+    }
+
+    .edit-button {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 30px;
+        height: 30px;
+        color: white;
+        background: #4ed4fa;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+
+.photo-tag {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 20px;
+    font-weight: bold;
+    font-size: smaller;
+
+    span {
+        padding-left: 60px;
+    }
+
+    span::before {
+        position: absolute;
+        display: inline-block;
+        height: 1px;
+        width: 45px;
+        content: " ";
+        border-top: 1px solid #fff;
+        left: 0;
+        top: 50%;
+        margin-top: -1px;
+        margin-right: 15px;
+    }
+}
+
+.section-badge
+{
+    text-transform: uppercase;
+    background: #F1F1FC;
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.section-note {
+    display: inline-block;
+    color: #B1B1BF;
+    vertical-align: super;
+    font-size: smaller;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.section-title
+{
+    margin-bottom: 30px;
+}
+
+.section-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.section-title .edit-icon
+{
+    float: right;
+    color: #B1B1BF;
+}
+
+ul.list
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul.list li
+{
+    padding-bottom: 30px;
+}
+
+ul.list li:last-child
+{
+    padding-bottom: 0;
+}
+
+ul.list .list-icon
+{
+    margin-right: 15px;
+}
+
+.photo-gallery
+{
+    margin-top: 25px;
+    margin-left: -35px;
+    margin-right: -35px;
+
+    @include media-breakpoint-up(sm) {
+        margin-left: -5px;
+        margin-right: 0;
+    }
+}
+
+// .photo-row
+// {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//     .photo-col
+//     {
+//         max-width: 100%;
+//         flex-grow: 1;
+//         @include media-breakpoint-up(sm) {
+//             flex-basis: 0;
+//         }
+//     }
+
+//     .photo-col-outer
+//     {
+//         width: 100%;
+//         @include media-breakpoint-up(sm) {
+//             width: 33.33%;
+//         }
+//     }
+
+//     .photo-col-outer-fullwidth
+//     {
+//         width: 100%;
+//         flex-basis: unset;
+//     }
+
+    
+// }
+
+.photo-wrap {
+    @include border-radius-grid-up(10px, 'md');
+    position: relative;
+    overflow: hidden;
+    margin: 5px;
+
+    &.darkened {
+        background: black;
+        .photo {
+            opacity: 0.4;
+        }
+    }
+
+    .photo {
+        position: relative;
+        padding-bottom: 100%;
+        height: 0;
+    }
+
+    .photo-caption {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: bold;
+    }
+
+    .action-icon {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 3px 8px;
+        color: #fff;
+        background: #252a41;
+        border-radius: 50%;
+        font-size: 16px;
+    }
+    .action-check {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+    }
+}
+
+.no-padding{
+    padding: 0px !important;
+}
+
+.comments-header {
+    border-bottom: 1px solid black;
+    padding-bottom: 30px;
+}
+
+.comments-filters {
+    margin-top: 30px;
+    color: #B1B1BF;
+    font-size: smaller;
+}
+
+.comments-filters input {
+    margin-right: 10px;
+    box-shadow: none;
+    border: 1px solid red !important;
+}
+
+.comment-filter {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.comment
+{
+    margin: 30px 0;
+    border-bottom: 1px dotted #B1B1BF;
+    padding-bottom: 30px;
+}
+.comment:last-child
+{
+    border-bottom: none;
+}
+
+.comment .comment-heading
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.comment-heading-author
+{
+    flex: 1;
+}
+
+.comment-author-avatar
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.comment-author-num
+{
+    display: inline-block;
+    margin-left: -7px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #00f5ca;
+    text-align: center;
+    color: white;
+    font-size: small;
+    font-weight: bold;
+}
+
+.comment-author-name
+{
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.num-low {
+    background: #FF6AA0;
+}
+
+.comment-side
+{
+    color: #B1B1BF;
+}
+
+.pagination-wrapper {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pagination {
+    margin: 0 auto;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.pagination li {
+    display: inline-block;
+}
+
+.pagination li.previous a {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+.pagination li.next a {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.pagination li a {
+    color: black;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.pagination li.active a, .pagination li.break-me a {
+    color: #B1B1BF;
+}
+
+.custom-modal {
+    @include media-breakpoint-up(md) {
+        min-width: 720px;
+    }
+}
+
+.photo-upload-modal {
+    @include media-breakpoint-up(md) {
+        min-width: 820px;
+    }
+}

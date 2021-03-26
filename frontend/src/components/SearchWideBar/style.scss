@@ -1,0 +1,14 @@
+.search-wide-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    
+
+    .search-input {
+        padding: 0px 30px;
+        outline: none;
+        border: none;
+        width: 100%;
+    }
+}

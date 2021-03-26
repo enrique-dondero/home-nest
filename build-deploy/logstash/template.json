@@ -1,0 +1,65 @@
+{
+    "order": 0,
+    "template" : "business",
+    "mappings" : {
+      "businesses": {
+        "properties": {
+            "id": {
+              "type": "integer",
+              "index": "true"
+            },
+            "uuid": {
+              "type": "text"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "english": {
+                  "type": "text",
+                  "analyzer": "english"
+                },
+                "synonym": {
+                  "type": "text",
+                  "analyzer": "synonym_analyzer",
+                  "index": "true"
+                }
+              }
+            },
+            "lat": {
+              "type": "float"
+            },
+            "lng": {
+              "type": "long"
+            },
+            "total_reviews": {
+              "type": "long"
+            },
+            "score": {
+              "type": "integer"
+            },
+            "internal_score": {
+              "type": "integer"
+            },
+            "total_posts": {
+              "type": "long"
+            },
+            "is_open": {
+              "type": "boolean",
+              "index": "true"
+            },
+            "open_description": {
+              "type": "text",
+              "index": "false"
+            },
+            "cover_photo": {
+              "type": "text",
+              "index": "false"
+            },
+            "avatar": {
+              "type": "text",
+              "index": "false"
+            }
+          }
+      }
+    }
+} 

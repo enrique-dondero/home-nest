@@ -1,0 +1,34 @@
+.personal-info-modal {
+    .form-group {
+        .form-label {
+            color: #b1b1bf;
+        }
+        .form-input {
+            width: 100%;
+        }
+        .category-dropdown {
+            background-color: #F1F1FC;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            input.search{
+                margin-top: 0.252381em !important;
+                margin-bottom: 0px !important;
+            }
+            .dropdown.icon {
+                display: none;
+            }
+            .ui.label {
+                background: none;
+                border: none;
+                box-shadow: none;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+            .menu.transition {
+                border-color: none;
+                border: none;
+            }
+        }
+    }
+}
